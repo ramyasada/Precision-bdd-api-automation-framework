@@ -1,0 +1,18 @@
+# Eclipse
+.classpath
+.project
+.settings/
+.metadata/
+
+# Maven build files
+target/
+
+# TestNG reports
+test-output/
+
+# Allure reports
+allure-report/
+allure-results/
+
+# Logs
+*.log
