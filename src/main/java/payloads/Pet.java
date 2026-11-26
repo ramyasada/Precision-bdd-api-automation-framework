@@ -6,12 +6,19 @@ public class Pet {
     private long id;
     private String name;
     private String status;
-
+    private Category category;
     public Pet() {
     }
-
+    
     public Pet(long id, String name, String status) {
         this.id = id;
+        this.name = name;
+        this.status = status;
+    }
+    
+    public Pet(long id, Category category, String name, String status) {
+        this.id = id;
+        this.category = category;
         this.name = name;
         this.status = status;
     }
@@ -38,5 +45,13 @@ public class Pet {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+    
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

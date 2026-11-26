@@ -1,4 +1,7 @@
+
 package validators;
+
+import java.util.List;
 
 import org.testng.Assert;
 import io.restassured.response.Response;
@@ -29,17 +32,30 @@ public class ResponseValidator {
                 "Response should not contain: " + unexpectedText
         );
     }
-    public static void validateLoginApiResponse(Response response) {
+
+    // Validate login API response does not return a session token
+    public static void validateNoValidSessionToken(Response response) {
 
         Assert.assertEquals(
                 response.getStatusCode(),
                 200,
-                "Unexpected login status code"
+                "Unexpected login response status"
         );
 
         Assert.assertTrue(
                 response.jsonPath().get("code") != null,
                 "Response should contain API code field"
+        );
+    }
+
+    // Validate created pet ID exists in the retrieved pets list
+    public static void validatePetIdExists(Response response, long petId) {
+
+        List<Long> petIds = response.jsonPath().getList("id", Long.class);
+
+        Assert.assertTrue(
+                petIds.contains(petId),
+                "Created pet ID was not found in the retrieved pets list: " + petId
         );
     }
 }

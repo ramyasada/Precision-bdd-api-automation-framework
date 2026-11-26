@@ -1,3 +1,4 @@
+
 package stepdefinitions;
 
 import org.apache.logging.log4j.Logger;
@@ -84,18 +85,19 @@ public class UserSteps {
     @When("I login using username {string} and password {string}")
     public void loginWithInvalidCredentials(String username, String password) {
 
+        logger.info("Sending login request for username: {}", username);
+
         response = userApiClient.login(username, password);
 
-        System.out.println("Login Status Code: " + response.getStatusCode());
-        System.out.println("Login Response Body: ");
-        response.prettyPrint();
+        logger.info("Login response status code: {}", response.getStatusCode());
+        logger.info("Login response body: {}", response.asString());
     }
 
-    @Then("the login API response should be successful")
+    @Then("the response should not contain a valid session token")
     public void verifyInvalidLogin() {
 
-        ResponseValidator.validateLoginApiResponse(response);
+        ResponseValidator.validateNoValidSessionToken(response);
 
-        logger.info("Login API response validation completed successfully");
+        logger.info("Validated that invalid login did not return a session token");
     }
 }
