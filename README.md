@@ -221,8 +221,7 @@ Example:
 
 ```properties
 baseUrl=https://petstore.swagger.io/v2
-connectionTimeout=10000
-socketTimeout=10000
+
 ```
 
 ## Execution Instructions
